@@ -16,21 +16,17 @@ const Add = ({ url }) => {
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    // console.log("name", name);
-    // console.log("value", value);
     setData((data) => ({ ...data, [name]: value }));
   };
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    console.log("formData before", formData);
     formData.append("name", data.name);
     formData.append("description", data.description);
     formData.append("price", Number(data.price));
     formData.append("category", data.category);
     formData.append("image", image);
-    console.log("formData after", formData);
 
     const response = await axios.post(`${url}/api/food/add`, formData);
     if (response.data.success) {
@@ -61,7 +57,6 @@ const Add = ({ url }) => {
               src={image ? URL.createObjectURL(image) : assets.upload_area}
               alt=""
             />
-            {image && console.log("IMAGE URL", URL.createObjectURL(image))}
           </label>
           <input
             onChange={(e) => {

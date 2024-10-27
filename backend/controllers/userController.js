@@ -8,15 +8,12 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await userModel.findOne({ email });
-    console.log("loginuser detail", user);
-    console.log("req email password", email, password);
 
     if (!user) {
       return res.json({ success: false, message: "User Doesn't exist" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    console.log("loginuser isMatch", isMatch);
 
     if (!isMatch) {
       return res.json({ success: false, message: "Invalid Credentials" });
@@ -40,7 +37,6 @@ const registerUser = async (req, res) => {
   try {
     // checking is user already exists
     const exists = await userModel.findOne({ email });
-    console.log("exists", exists);
     if (exists) {
       return res.json({ success: false, message: "User already exists" });
     }
@@ -72,7 +68,7 @@ const registerUser = async (req, res) => {
 
     const user = await newUser.save();
     const token = createToken(user._id);
-    console.log("PRINT NEW USER", user, token);
+
     res.json({ success: true, token });
   } catch (error) {
     console.log(error);

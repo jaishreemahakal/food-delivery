@@ -8,7 +8,6 @@ const List = ({ url }) => {
 
   const fetchList = async () => {
     const response = await axios.get(`${url}/api/food/list`);
-    console.log("fetchlist", response);
     if (response.data.success) {
       setList(response.data.data);
     } else {
@@ -17,9 +16,7 @@ const List = ({ url }) => {
   };
 
   const removeFood = async (foodId) => {
-    console.log("foodID", foodId);
     const response = await axios.post(`${url}/api/food/remove`, { id: foodId });
-    console.log("removeFood response", response);
     await fetchList();
 
     if (response.data.success) {
@@ -30,7 +27,6 @@ const List = ({ url }) => {
   };
 
   useEffect(() => {
-    console.log("UseEffect run in list component");
     fetchList();
   }, []);
 

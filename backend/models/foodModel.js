@@ -23,11 +23,6 @@ const foodSchema = new mongoose.Schema({
   },
 });
 
-console.log("FIND ALREADY PRESENT", mongoose.models.food);
-
 const foodModel = mongoose.models.food || mongoose.model("food", foodSchema);
-
-console.log("FOODMODEL", foodModel);
-
 
 export default foodModel;
