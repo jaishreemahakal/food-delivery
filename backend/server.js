@@ -11,7 +11,7 @@ import orderRouter from "./routes/orderRoute.js";
 
 // app config
 const app = express();
-const port = 4000;
+const port = "https://food-delivery-backend-8wio.onrender.com";
 
 // middleware
 app.use(express.json());
